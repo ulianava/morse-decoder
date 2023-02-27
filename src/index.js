@@ -38,7 +38,19 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let words = expr.split('**********');
+    let sum = '';
+    let phrase = '';
+    for (let i = 0; i < words.length; i++) {
+        for (let a = 0; a < Array.from(words[i]).length; a+=10) {
+            Array.from(words[i]).slice(a,a+10).join('').replaceAll('10','.').replaceAll('11','-').replaceAll('0','')
+            sum = MORSE_TABLE[Array.from(words[i]).slice(a,a+10).join('').replaceAll('10','.').replaceAll('11','-').replaceAll('0','')]
+            phrase +=sum
+        }
+        phrase+=' ';
+        sum='';
+    }
+    return phrase.trimEnd()
 }
 
 module.exports = {
